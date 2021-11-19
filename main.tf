@@ -10,6 +10,11 @@ provider "tfe" {
   version  = "~> 0.26.0"
 }
 
+data "tfe_team" "dev" {
+    name = "dev"
+    organization = var.org
+}
+
 
 resource "tfe_team" "dev" {
   name         = "Development"

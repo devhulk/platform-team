@@ -11,6 +11,7 @@ provider "tfe" {
 }
 
 data "tfe_team" "dev" {
+    id = "team-QBa4Ff6aehw4kk8t"
     name = "dev"
     organization = var.org
 }

@@ -21,7 +21,7 @@ resource "tfe_team" "dev" {
   organization = var.org
   visibility = "organization"
   organization_access {
-      manage_policies = false
+      manage_policies = true
       manage_policy_overrides = false
       manage_workspaces = false
       manage_vcs_settings = false

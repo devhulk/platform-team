@@ -16,6 +16,7 @@ data "tfe_team" "dev" {
 }
 
 
+
 resource "tfe_team" "dev" {
   name         = "Development"
   organization = var.org

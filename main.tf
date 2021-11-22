@@ -10,11 +10,10 @@ provider "tfe" {
   version  = "~> 0.26.0"
 }
 
-data "tfe_team" "dev" {
-    id = "team-QBa4Ff6aehw4kk8t"
-    name = "dev"
-    organization = var.org
-}
+// data "tfe_team" "dev" {
+//     name = "dev"
+//     organization = var.org
+// }
 
 
 

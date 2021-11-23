@@ -64,14 +64,6 @@ resource "tfe_team" "product_b" {
 
 }
 
-// resource "tfe_oauth_client" "main" {
-//     organization = var.org
-//     api_url          = "https://api.github.com"
-//     http_url         = "https://github.com"
-//     oauth_token      = var.vcs_token
-//     service_provider = "github"
-// }
-
 resource "tfe_workspace" "product_a" {
     name = "Product A"
     organization = var.org
@@ -81,7 +73,7 @@ resource "tfe_workspace" "product_a" {
     vcs_repo {
         identifier = "devhulk/product-team-a"
         branch = "main"
-        oauth_token = var.vcs_token
+        oauth_token_id = var.vcs_token
     }
 }
 
@@ -94,6 +86,6 @@ resource "tfe_workspace" "product_b" {
     vcs_repo {
         identifier = "devhulk/product-team-b"
         branch = "main"
-        oauth_token = var.vcs_token
+        oauth_token_id = var.vcs_token
     }
 }

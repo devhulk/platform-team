@@ -142,7 +142,7 @@ resource "tfe_workspace" "azure_networking" {
 }
 
 resource "tfe_variable" "azure_networking_region" {
-  key          = "region"
+  key          = "networking_region"
   value        = "US East"
   category     = "terraform"
   workspace_id = tfe_workspace.azure_networking.id
@@ -150,7 +150,7 @@ resource "tfe_variable" "azure_networking_region" {
 }
 
 resource "tfe_variable" "azure_networking_team_name" {
-  key          = "team_name"
+  key          = "networking_team_name"
   value        = "PlatformEngineering"
   category     = "terraform"
   workspace_id = tfe_workspace.azure_networking.id
@@ -158,7 +158,7 @@ resource "tfe_variable" "azure_networking_team_name" {
 }
 
 resource "tfe_variable" "azure_networking_environment" {
-  key          = "environment"
+  key          = "networking_environment"
   value        = "production"
   category     = "terraform"
   workspace_id = tfe_workspace.azure_networking.id

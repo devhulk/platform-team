@@ -64,18 +64,18 @@ resource "tfe_team" "product_b" {
 
 }
 
-// resource "tfe_workspace" "product_a" {
-//     name = "Product-A"
-//     organization = var.org
-//     execution_mode = "remote"
-//     tag_names = ["prod"]
+resource "tfe_workspace" "product_a" {
+    name = "Product-A"
+    organization = var.org
+    execution_mode = "remote"
+    tag_names = ["prod"]
 
-//     vcs_repo {
-//         identifier = "devhulk/product-team-a"
-//         branch = "main"
-//         oauth_token_id = var.vcs_token
-//     }
-// }
+    vcs_repo {
+        identifier = "devhulk/product-team-a"
+        branch = "main"
+        oauth_token_id = var.vcs_token
+    }
+}
 
 resource "tfe_workspace" "product_b" {
     name = "Product-B"

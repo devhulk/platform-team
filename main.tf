@@ -11,7 +11,6 @@ provider "tfe" {
 }
 
 
-
 resource "tfe_team" "cloud" {
   name         = "Cloud Engineering"
   organization = var.org
@@ -140,6 +139,30 @@ resource "tfe_workspace" "azure_networking" {
         branch = "main"
         oauth_token_id = var.vcs_token
     }
+}
+
+resource "tfe_variable" "azure_networking_region" {
+  key          = "region"
+  value        = "US East"
+  category     = "terraform"
+  workspace_id = tfe_workspace.azure_networking.id
+  description  = "Azure Region"
+}
+
+resource "tfe_variable" "azure_networking_team_name" {
+  key          = "team_name"
+  value        = "PlatformEngineering"
+  category     = "terraform"
+  workspace_id = tfe_workspace.azure_networking.id
+  description  = "Team Name"
+}
+
+resource "tfe_variable" "azure_networking_environment" {
+  key          = "environment"
+  value        = "production"
+  category     = "terraform"
+  workspace_id = tfe_workspace.azure_networking.id
+  description  = "Deployment Environment"
 }
 
 resource "tfe_team_access" "azure_networking_product_a" {

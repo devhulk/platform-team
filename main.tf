@@ -65,7 +65,7 @@ resource "tfe_workspace" "product_a" {
     name = "product-team-a"
     organization = var.org
     execution_mode = "remote"
-    tag_names = ["azure", "prod"]
+    tag_names = ["prod", "team:a"]
 
     vcs_repo {
         identifier = "devhulk/product-team-a"

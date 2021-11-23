@@ -147,7 +147,7 @@ resource "tfe_variable" "azure_networking_region" {
   category     = "terraform"
   workspace_id = tfe_workspace.azure_networking.id
   description  = "Azure Region"
-  hcl = true
+//   hcl = true
 }
 
 resource "tfe_variable" "azure_networking_team_name" {
@@ -156,7 +156,7 @@ resource "tfe_variable" "azure_networking_team_name" {
   category     = "terraform"
   workspace_id = tfe_workspace.azure_networking.id
   description  = "Team Name"
-  hcl = true
+//   hcl = true
 }
 
 resource "tfe_variable" "azure_networking_environment" {
@@ -165,7 +165,7 @@ resource "tfe_variable" "azure_networking_environment" {
   category     = "terraform"
   workspace_id = tfe_workspace.azure_networking.id
   description  = "Deployment Environment"
-  hcl = true
+//   hcl = true
 }
 
 resource "tfe_team_access" "azure_networking_product_a" {

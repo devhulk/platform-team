@@ -51,6 +51,11 @@ resource "tfe_team" "product_a" {
 
 }
 
+resource "tfe_team_members" "product_a" {
+    team_id = tfe_team.product_a.id
+    usernames = ["devhulk"]
+}
+
 resource "tfe_team" "product_b" {
   name         = "Product Team B"
   organization = var.org
@@ -62,6 +67,11 @@ resource "tfe_team" "product_b" {
       manage_vcs_settings = false
   }
 
+}
+
+resource "tfe_team_members" "product_b" {
+    team_id = tfe_team.product_b.id
+    usernames = ["devhulk"]
 }
 
 resource "tfe_workspace" "product_a" {

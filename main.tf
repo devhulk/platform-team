@@ -76,7 +76,7 @@ resource "tfe_team_members" "product_b" {
 }
 
 resource "tfe_workspace" "product_a" {
-    name = "Product-A"
+    name = "product-team-a"
     organization = var.org
     execution_mode = "remote"
     tag_names = ["azure", "prod"]
@@ -103,7 +103,7 @@ resource "tfe_team_access" "product_a" {
 }
 
 resource "tfe_workspace" "product_b" {
-    name = "Product-B"
+    name = "product-team-b"
     organization = var.org
     execution_mode = "remote"
     tag_names = ["azure", "prod"]
@@ -130,7 +130,7 @@ resource "tfe_team_access" "product_b" {
 }
 
 resource "tfe_workspace" "azure_networking" {
-    name = "Azure Networking"
+    name = "azure-networking"
     organization = var.org
     execution_mode = "remote"
     tag_names = ["prod"]

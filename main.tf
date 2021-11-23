@@ -130,7 +130,7 @@ resource "tfe_workspace" "azure_networking" {
     name = "azure-networking"
     organization = var.org
     execution_mode = "remote"
-    tag_names = ["prod", "team-a"]
+    tag_names = ["prod", "team:a"]
 
     vcs_repo {
         identifier = "devhulk/azure-networking"
@@ -184,7 +184,7 @@ resource "tfe_workspace" "azure_db" {
     name = "azure-db"
     organization = var.org
     execution_mode = "remote"
-    tag_names = ["prod", "team-a"]
+    tag_names = ["prod", "team:a"]
 
     vcs_repo {
         identifier = "devhulk/azure-db"

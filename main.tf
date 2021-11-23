@@ -51,19 +51,6 @@ resource "tfe_team" "product_a" {
 
 }
 
-resource "tfe_team_access" "product_a" {
-
-    team_id      = tfe_team.product_a.id
-    workspace_id = tfe_workspace.product_a.id
-
-    permissions {
-        runs = "apply"
-        variables = "write"
-        state_versions = "write"
-        sentinel_mocks = "read"
-        workspace_locking = false
-    }
-}
 
 resource "tfe_team_members" "product_a" {
     team_id = tfe_team.product_a.id
@@ -83,6 +70,51 @@ resource "tfe_team" "product_b" {
 
 }
 
+resource "tfe_team_members" "product_b" {
+    team_id = tfe_team.product_b.id
+    usernames = ["devhulk"]
+}
+
+resource "tfe_workspace" "product_a" {
+    name = "Product-A"
+    organization = var.org
+    execution_mode = "remote"
+    tag_names = ["azure", "prod"]
+
+    vcs_repo {
+        identifier = "devhulk/product-team-a"
+        branch = "main"
+        oauth_token_id = var.vcs_token
+    }
+}
+
+resource "tfe_team_access" "product_a" {
+
+    team_id      = tfe_team.product_a.id
+    workspace_id = tfe_workspace.product_a.id
+
+    permissions {
+        runs = "apply"
+        variables = "write"
+        state_versions = "write"
+        sentinel_mocks = "read"
+        workspace_locking = false
+    }
+}
+
+resource "tfe_workspace" "product_b" {
+    name = "Product-B"
+    organization = var.org
+    execution_mode = "remote"
+    tag_names = ["azure", "prod"]
+
+    vcs_repo {
+        identifier = "devhulk/product-team-b"
+        branch = "main"
+        oauth_token_id = var.vcs_token
+    }
+}
+
 resource "tfe_team_access" "product_b" {
 
     team_id      = tfe_team.product_b.id
@@ -94,36 +126,5 @@ resource "tfe_team_access" "product_b" {
         state_versions = "write"
         sentinel_mocks = "read"
         workspace_locking = false
-    }
-}
-
-resource "tfe_team_members" "product_b" {
-    team_id = tfe_team.product_b.id
-    usernames = ["devhulk"]
-}
-
-resource "tfe_workspace" "product_a" {
-    name = "Product-A"
-    organization = var.org
-    execution_mode = "remote"
-    tag_names = ["prod"]
-
-    vcs_repo {
-        identifier = "devhulk/product-team-a"
-        branch = "main"
-        oauth_token_id = var.vcs_token
-    }
-}
-
-resource "tfe_workspace" "product_b" {
-    name = "Product-B"
-    organization = var.org
-    execution_mode = "remote"
-    tag_names = [ "prod"]
-
-    vcs_repo {
-        identifier = "devhulk/product-team-b"
-        branch = "main"
-        oauth_token_id = var.vcs_token
     }
 }

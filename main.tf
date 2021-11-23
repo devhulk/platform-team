@@ -38,7 +38,7 @@ resource "tfe_team" "networking" {
 
 }
 
-resource "tfe_team" "product" {
+resource "tfe_team" "product_a" {
   name         = "Product Team A"
   organization = var.org
   visibility = "organization"
@@ -51,7 +51,7 @@ resource "tfe_team" "product" {
 
 }
 
-resource "tfe_team" "product" {
+resource "tfe_team" "product_b" {
   name         = "Product Team B"
   organization = var.org
   visibility = "organization"

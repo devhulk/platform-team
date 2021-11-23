@@ -68,7 +68,7 @@ resource "tfe_workspace" "product_a" {
     name = "Product-A"
     organization = var.org
     execution_mode = "remote"
-    tag_names = ["product-a", "dev"]
+    tag_names = ["product-a", "production"]
 
     vcs_repo {
         identifier = "devhulk/product-team-a"
@@ -81,7 +81,7 @@ resource "tfe_workspace" "product_b" {
     name = "Product-B"
     organization = var.org
     execution_mode = "remote"
-    tag_names = ["product-b", "dev"]
+    tag_names = ["product-b", "production"]
 
     vcs_repo {
         identifier = "devhulk/product-team-b"

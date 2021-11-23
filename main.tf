@@ -51,6 +51,20 @@ resource "tfe_team" "product_a" {
 
 }
 
+resource "tfe_team_access" "product_a" {
+
+    team_id      = tfe_team.product_a.id
+    workspace_id = tfe_workspace.product_a.id
+
+    permissions {
+        runs = "apply"
+        variables = "write"
+        state_versions = "write"
+        sentinel_mocks = "read"
+        workspace_locking = false
+    }
+}
+
 resource "tfe_team_members" "product_a" {
     team_id = tfe_team.product_a.id
     usernames = ["devhulk"]
@@ -67,6 +81,20 @@ resource "tfe_team" "product_b" {
       manage_vcs_settings = false
   }
 
+}
+
+resource "tfe_team_access" "product_b" {
+
+    team_id      = tfe_team.product_b.id
+    workspace_id = tfe_workspace.product_b.id
+
+    permissions {
+        runs = "apply"
+        variables = "write"
+        state_versions = "write"
+        sentinel_mocks = "read"
+        workspace_locking = false
+    }
 }
 
 resource "tfe_team_members" "product_b" {

@@ -11,18 +11,39 @@ provider "tfe" {
 }
 
 
-// data "tfe_team" "dev" {
-//     name = "dev"
-//     organization = var.org
-// }
 
-
-resource "tfe_team" "development" {
-  name         = "Development"
+resource "tfe_team" "cloud" {
+  name         = "Cloud Engineering"
   organization = var.org
   visibility = "organization"
   organization_access {
       manage_policies = true
+      manage_policy_overrides = true
+      manage_workspaces = true
+      manage_vcs_settings = true
+  }
+
+}
+
+resource "tfe_team" "networking" {
+  name         = "Networking"
+  organization = var.org
+  visibility = "organization"
+  organization_access {
+      manage_policies = true
+      manage_policy_overrides = true
+      manage_workspaces = true
+      manage_vcs_settings = true
+  }
+
+}
+
+resource "tfe_team" "product" {
+  name         = "Product Team A"
+  organization = var.org
+  visibility = "organization"
+  organization_access {
+      manage_policies = false
       manage_policy_overrides = false
       manage_workspaces = false
       manage_vcs_settings = false
@@ -31,11 +52,11 @@ resource "tfe_team" "development" {
 }
 
 resource "tfe_team" "product" {
-  name         = "Product Development"
+  name         = "Product Team B"
   organization = var.org
   visibility = "organization"
   organization_access {
-      manage_policies = true
+      manage_policies = false
       manage_policy_overrides = false
       manage_workspaces = false
       manage_vcs_settings = false

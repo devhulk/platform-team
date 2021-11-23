@@ -93,38 +93,38 @@ resource "tfe_team_access" "product_a" {
     }
 }
 
-resource "tfe_workspace" "product_b" {
-    name = "product-team-b"
-    organization = var.org
-    execution_mode = "remote"
-    tag_names = ["azure", "prod"]
+// resource "tfe_workspace" "product_b" {
+//     name = "product-team-b"
+//     organization = var.org
+//     execution_mode = "remote"
+//     tag_names = ["azure", "prod"]
 
-    vcs_repo {
-        identifier = "devhulk/product-team-b"
-        branch = "main"
-        oauth_token_id = var.vcs_token
-    }
-}
+//     vcs_repo {
+//         identifier = "devhulk/product-team-b"
+//         branch = "main"
+//         oauth_token_id = var.vcs_token
+//     }
+// }
 
-resource "tfe_run_trigger" "product_b" {
-  workspace_id  = tfe_workspace.product_b.id
-  sourceable_id = tfe_workspace.azure_networking.id
-}
+// resource "tfe_run_trigger" "product_b" {
+//   workspace_id  = tfe_workspace.product_b.id
+//   sourceable_id = tfe_workspace.azure_networking.id
+// }
 
 
-resource "tfe_team_access" "product_b" {
+// resource "tfe_team_access" "product_b" {
 
-    team_id      = tfe_team.product_b.id
-    workspace_id = tfe_workspace.product_b.id
+//     team_id      = tfe_team.product_b.id
+//     workspace_id = tfe_workspace.product_b.id
 
-    permissions {
-        runs = "apply"
-        variables = "write"
-        state_versions = "write"
-        sentinel_mocks = "read"
-        workspace_locking = false
-    }
-}
+//     permissions {
+//         runs = "apply"
+//         variables = "write"
+//         state_versions = "write"
+//         sentinel_mocks = "read"
+//         workspace_locking = false
+//     }
+// }
 
 resource "tfe_workspace" "azure_networking" {
     name = "azure-networking"
@@ -180,16 +180,16 @@ resource "tfe_team_access" "azure_networking_product_a" {
     }
 }
 
-resource "tfe_team_access" "azure_networking_product_b" {
+// resource "tfe_team_access" "azure_networking_product_b" {
 
-    team_id      = tfe_team.product_b.id
-    workspace_id = tfe_workspace.azure_networking.id
+//     team_id      = tfe_team.product_b.id
+//     workspace_id = tfe_workspace.azure_networking.id
 
-    permissions {
-        runs = "read"
-        variables = "none"
-        state_versions = "read"
-        sentinel_mocks = "read"
-        workspace_locking = false
-    }
-}
+//     permissions {
+//         runs = "read"
+//         variables = "none"
+//         state_versions = "read"
+//         sentinel_mocks = "read"
+//         workspace_locking = false
+//     }
+// }

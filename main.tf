@@ -143,7 +143,7 @@ resource "tfe_workspace" "azure_networking" {
 
 resource "tfe_variable" "azure_networking_region" {
   key          = "region"
-  value        = "US East"
+  value        = "East US"
   category     = "terraform"
   workspace_id = tfe_workspace.azure_networking.id
   description  = "Azure Region"

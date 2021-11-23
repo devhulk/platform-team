@@ -29,3 +29,16 @@ resource "tfe_team" "development" {
   }
 
 }
+
+resource "tfe_team" "product" {
+  name         = "Product Development"
+  organization = var.org
+  visibility = "organization"
+  organization_access {
+      manage_policies = true
+      manage_policy_overrides = false
+      manage_workspaces = false
+      manage_vcs_settings = false
+  }
+
+}

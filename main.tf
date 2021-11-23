@@ -16,8 +16,8 @@ provider "tfe" {
 // }
 
 
-resource "tfe_team" "dev" {
-  name         = "dev"
+resource "tfe_team" "development" {
+  name         = "Development"
   organization = var.org
   visibility = "organization"
   organization_access {

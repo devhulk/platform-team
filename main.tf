@@ -180,16 +180,56 @@ resource "tfe_team_access" "azure_networking_product_a" {
     }
 }
 
-// resource "tfe_team_access" "azure_networking_product_b" {
+resource "tfe_workspace" "azure_db" {
+    name = "azure-db"
+    organization = var.org
+    execution_mode = "remote"
+    tag_names = ["prod"]
 
-//     team_id      = tfe_team.product_b.id
-//     workspace_id = tfe_workspace.azure_networking.id
+    vcs_repo {
+        identifier = "devhulk/azure-db"
+        branch = "main"
+        oauth_token_id = var.vcs_token
+    }
+}
 
-//     permissions {
-//         runs = "read"
-//         variables = "none"
-//         state_versions = "read"
-//         sentinel_mocks = "read"
-//         workspace_locking = false
-//     }
-// }
+resource "tfe_variable" "azure_db_region" {
+  key          = "region"
+  value        = "East US"
+  category     = "terraform"
+  workspace_id = tfe_workspace.azure_db.id
+  description  = "Azure Region"
+//   hcl = true
+}
+
+resource "tfe_variable" "azure_db_team_name" {
+  key          = "team_name"
+  value        = "PlatformEngineering"
+  category     = "terraform"
+  workspace_id = tfe_workspace.azure_db.id
+  description  = "Team Name"
+//   hcl = true
+}
+
+resource "tfe_variable" "azure_db_environment" {
+  key          = "environment"
+  value        = "production"
+  category     = "terraform"
+  workspace_id = tfe_workspace.azure_db.id
+  description  = "Deployment Environment"
+//   hcl = true
+}
+
+resource "tfe_team_access" "azure_db_product_a" {
+
+    team_id      = tfe_team.product_a.id
+    workspace_id = tfe_workspace.azure_db.id
+
+    permissions {
+        runs = "read"
+        variables = "none"
+        state_versions = "read"
+        sentinel_mocks = "read"
+        workspace_locking = false
+    }
+}

@@ -216,7 +216,16 @@ resource "tfe_variable" "azure_db_type" {
   value        = "sql"
   category     = "terraform"
   workspace_id = tfe_workspace.azure_db.id
-  description  = "Deployment Environment"
+  description  = "SQL of MongoDB"
+//   hcl = true
+}
+
+resource "tfe_variable" "azure_db_failover" {
+  key          = "failover_location"
+  value        = "West US"
+  category     = "terraform"
+  workspace_id = tfe_workspace.azure_db.id
+  description  = "Failover Region"
 //   hcl = true
 }
 

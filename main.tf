@@ -11,19 +11,6 @@ provider "tfe" {
 }
 
 
-resource "tfe_team" "cloud" {
-  name         = "Cloud Engineering"
-  organization = var.org
-  visibility = "organization"
-  organization_access {
-      manage_policies = true
-      manage_policy_overrides = true
-      manage_workspaces = true
-      manage_vcs_settings = true
-  }
-
-}
-
 resource "tfe_team" "networking" {
   name         = "Networking"
   organization = var.org
@@ -87,6 +74,11 @@ resource "tfe_workspace" "product_a" {
     }
 }
 
+resource "tfe_run_trigger" "product_a" {
+  workspace_id  = tfe_workspace.product_a.id
+  sourceable_id = tfe_workspace.azure_networking.id
+}
+
 resource "tfe_team_access" "product_a" {
 
     team_id      = tfe_team.product_a.id
@@ -113,6 +105,12 @@ resource "tfe_workspace" "product_b" {
         oauth_token_id = var.vcs_token
     }
 }
+
+resource "tfe_run_trigger" "product_b" {
+  workspace_id  = tfe_workspace.product_b.id
+  sourceable_id = tfe_workspace.azure_networking.id
+}
+
 
 resource "tfe_team_access" "product_b" {
 

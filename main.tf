@@ -150,7 +150,7 @@ resource "tfe_variable" "azure_networking_region" {
 
 resource "tfe_variable" "azure_networking_team_name" {
   key          = "team_name"
-  value        = "PlatformEngineering"
+  value        = "team-a"
   category     = "terraform"
   workspace_id = tfe_workspace.azure_networking.id
   description  = "Team Name"
@@ -204,7 +204,7 @@ resource "tfe_variable" "azure_db_region" {
 
 resource "tfe_variable" "azure_db_team_name" {
   key          = "team_name"
-  value        = "PlatformEngineering"
+  value        = "team-a"
   category     = "terraform"
   workspace_id = tfe_workspace.azure_db.id
   description  = "Team Name"

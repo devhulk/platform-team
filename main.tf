@@ -16,7 +16,6 @@ provider "tfe" {
 // }
 
 
-
 resource "tfe_team" "dev" {
   name         = "dev"
   organization = var.org

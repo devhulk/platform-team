@@ -128,3 +128,44 @@ resource "tfe_team_access" "product_b" {
         workspace_locking = false
     }
 }
+
+resource "tfe_workspace" "azure_networking" {
+    name = "Azure Networking"
+    organization = var.org
+    execution_mode = "remote"
+    tag_names = ["prod"]
+
+    vcs_repo {
+        identifier = "devhulk/azure-networking"
+        branch = "main"
+        oauth_token_id = var.vcs_token
+    }
+}
+
+resource "tfe_team_access" "azure_networking_product_a" {
+
+    team_id      = tfe_team.product_a.id
+    workspace_id = tfe_workspace.azure_networking.id
+
+    permissions {
+        runs = "read"
+        variables = "none"
+        state_versions = "read"
+        sentinel_mocks = "read"
+        workspace_locking = false
+    }
+}
+
+resource "tfe_team_access" "azure_networking_product_b" {
+
+    team_id      = tfe_team.product_b.id
+    workspace_id = tfe_workspace.azure_networking.id
+
+    permissions {
+        runs = "read"
+        variables = "none"
+        state_versions = "read"
+        sentinel_mocks = "read"
+        workspace_locking = false
+    }
+}

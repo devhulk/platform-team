@@ -211,9 +211,9 @@ resource "tfe_variable" "azure_db_team_name" {
 //   hcl = true
 }
 
-resource "tfe_variable" "azure_db_environment" {
-  key          = "environment"
-  value        = "production"
+resource "tfe_variable" "azure_db_type" {
+  key          = "db"
+  value        = "sql"
   category     = "terraform"
   workspace_id = tfe_workspace.azure_db.id
   description  = "Deployment Environment"

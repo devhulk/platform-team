@@ -10,7 +10,7 @@ provider "tfe" {
   version  = "~> 0.26.0"
 }
 
-module "product_team" {
+module "product_team_b" {
   source = "./modules/product-team" 
   org = var.org 
   team_name = "product-team-b"
@@ -19,7 +19,7 @@ module "product_team" {
   vcs_token = var.vcs_token
 }
 
-module "product_team" {
+module "product_team_c" {
   source = "./modules/product-team" 
   org = var.org 
   team_name = "product-team-c"

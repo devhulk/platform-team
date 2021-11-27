@@ -25,7 +25,7 @@ resource "tfe_workspace" "product_team" {
     tag_names = var.workspace_tags
 
     vcs_repo {
-        identifier = "devhulk/product-team-a"
+        identifier = "devhulk/${var.team_name}"
         branch = "main"
         oauth_token_id = var.vcs_token
     }

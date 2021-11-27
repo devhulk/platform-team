@@ -18,30 +18,30 @@ resource "tfe_team_members" "product_team" {
     usernames = var.team_members
 }
 
-resource "tfe_workspace" "product_team" {
-    name = "${var.team_name}"
-    organization = var.org
-    execution_mode = "remote"
-    tag_names = var.workspace_tags
-    queue_all_runs = false
+# resource "tfe_workspace" "product_team" {
+#     name = "${var.team_name}"
+#     organization = var.org
+#     execution_mode = "remote"
+#     tag_names = var.workspace_tags
+#     queue_all_runs = false
 
-    vcs_repo {
-        identifier = "devhulk/${var.team_name}"
-        branch = "main"
-        oauth_token_id = var.vcs_token
-    }
-}
+#     vcs_repo {
+#         identifier = "devhulk/${var.team_name}"
+#         branch = "main"
+#         oauth_token_id = var.vcs_token
+#     }
+# }
 
-resource "tfe_team_access" "product_team" {
+# resource "tfe_team_access" "product_team" {
 
-    team_id      = tfe_team.product_team.id
-    workspace_id = tfe_workspace.product_team.id
+#     team_id      = tfe_team.product_team.id
+#     workspace_id = tfe_workspace.product_team.id
 
-    permissions {
-        runs = "apply"
-        variables = "write"
-        state_versions = "write"
-        sentinel_mocks = "read"
-        workspace_locking = false
-    }
-}
+#     permissions {
+#         runs = "apply"
+#         variables = "write"
+#         state_versions = "write"
+#         sentinel_mocks = "read"
+#         workspace_locking = false
+#     }
+# }

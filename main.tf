@@ -10,23 +10,37 @@ provider "tfe" {
   version  = "~> 0.26.0"
 }
 
-module "product_team_b" {
+module "product_team_a" {
   source = "./modules/product-team" 
   org = var.org 
-  team_name = "product-team-b"
+  team_name = "product-team-a"
   team_members = ["devhulk"]
-  workspace_tags = ["azure", "dev"]
+}
+
+module "team_a_dev" {
+  team_name = module.product_team_a.team_name
+  team_id = module.product_team_a.team_id
+  env = "dev"
+  workspace_tags = ["azure", "team:a"]
   vcs_token = var.vcs_token
 }
 
-module "product_team_c" {
-  source = "./modules/product-team" 
-  org = var.org 
-  team_name = "product-team-c"
-  team_members = ["devhulk"]
-  workspace_tags = ["azure", "prod"]
+module "team_a_qa" {
+  team_name = module.product_team_a.team_name
+  team_id = module.product_team_a.team_id
+  env = "qa"
+  workspace_tags = ["azure", "team:a"]
   vcs_token = var.vcs_token
 }
+
+module "team_a_prod" {
+  team_name = module.product_team_a.team_name
+  team_id = module.product_team_a.team_id
+  env = "prod"
+  workspace_tags = ["azure", "team:a"]
+  vcs_token = var.vcs_token
+}
+
 
 // resource "tfe_workspace" "product_b" {
 //     name = "product-team-b"

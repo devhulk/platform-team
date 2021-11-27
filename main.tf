@@ -19,6 +19,15 @@ module "product_team" {
   vcs_token = var.vcs_token
 }
 
+module "product_team" {
+  source = "./modules/product-team" 
+  org = var.org 
+  team_name = "product-team-c"
+  team_members = ["devhulk"]
+  workspace_tags = ["azure", "prod"]
+  vcs_token = var.vcs_token
+}
+
 // resource "tfe_workspace" "product_b" {
 //     name = "product-team-b"
 //     organization = var.org

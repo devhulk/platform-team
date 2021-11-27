@@ -10,6 +10,48 @@ provider "tfe" {
   version  = "~> 0.26.0"
 }
 
+module "product_team" {
+  source = "./modules/product-team" 
+  org = var.org 
+  team_name = "product-team-b"
+  team_members = ["devhulk"]
+  workspace_tags = ["azure", "dev"]
+  vcs_token = var.vcs_token
+}
+
+// resource "tfe_workspace" "product_b" {
+//     name = "product-team-b"
+//     organization = var.org
+//     execution_mode = "remote"
+//     tag_names = ["azure", "prod"]
+
+//     vcs_repo {
+//         identifier = "devhulk/product-team-b"
+//         branch = "main"
+//         oauth_token_id = var.vcs_token
+//     }
+// }
+
+// resource "tfe_run_trigger" "product_b" {
+//   workspace_id  = tfe_workspace.product_b.id
+//   sourceable_id = tfe_workspace.azure_networking.id
+// }
+
+
+// resource "tfe_team_access" "product_b" {
+
+//     team_id      = tfe_team.product_b.id
+//     workspace_id = tfe_workspace.product_b.id
+
+//     permissions {
+//         runs = "apply"
+//         variables = "write"
+//         state_versions = "write"
+//         sentinel_mocks = "read"
+//         workspace_locking = false
+//     }
+// }
+
 
 resource "tfe_team" "networking" {
   name         = "Networking"
@@ -93,38 +135,6 @@ resource "tfe_team_access" "product_a" {
     }
 }
 
-// resource "tfe_workspace" "product_b" {
-//     name = "product-team-b"
-//     organization = var.org
-//     execution_mode = "remote"
-//     tag_names = ["azure", "prod"]
-
-//     vcs_repo {
-//         identifier = "devhulk/product-team-b"
-//         branch = "main"
-//         oauth_token_id = var.vcs_token
-//     }
-// }
-
-// resource "tfe_run_trigger" "product_b" {
-//   workspace_id  = tfe_workspace.product_b.id
-//   sourceable_id = tfe_workspace.azure_networking.id
-// }
-
-
-// resource "tfe_team_access" "product_b" {
-
-//     team_id      = tfe_team.product_b.id
-//     workspace_id = tfe_workspace.product_b.id
-
-//     permissions {
-//         runs = "apply"
-//         variables = "write"
-//         state_versions = "write"
-//         sentinel_mocks = "read"
-//         workspace_locking = false
-//     }
-// }
 
 resource "tfe_workspace" "azure_networking" {
     name = "azure-networking"
@@ -154,7 +164,6 @@ resource "tfe_variable" "azure_networking_team_name" {
   category     = "terraform"
   workspace_id = tfe_workspace.azure_networking.id
   description  = "Team Name"
-//   hcl = true
 }
 
 resource "tfe_variable" "azure_networking_environment" {
@@ -163,7 +172,6 @@ resource "tfe_variable" "azure_networking_environment" {
   category     = "terraform"
   workspace_id = tfe_workspace.azure_networking.id
   description  = "Deployment Environment"
-//   hcl = true
 }
 
 resource "tfe_team_access" "azure_networking_product_a" {
@@ -199,7 +207,6 @@ resource "tfe_variable" "azure_db_region" {
   category     = "terraform"
   workspace_id = tfe_workspace.azure_db.id
   description  = "Azure Region"
-//   hcl = true
 }
 
 resource "tfe_variable" "azure_db_team_name" {
@@ -208,7 +215,6 @@ resource "tfe_variable" "azure_db_team_name" {
   category     = "terraform"
   workspace_id = tfe_workspace.azure_db.id
   description  = "Team Name"
-//   hcl = true
 }
 
 resource "tfe_variable" "azure_db_type" {
@@ -217,7 +223,6 @@ resource "tfe_variable" "azure_db_type" {
   category     = "terraform"
   workspace_id = tfe_workspace.azure_db.id
   description  = "SQL of MongoDB"
-//   hcl = true
 }
 
 resource "tfe_variable" "azure_db_failover" {
@@ -226,7 +231,6 @@ resource "tfe_variable" "azure_db_failover" {
   category     = "terraform"
   workspace_id = tfe_workspace.azure_db.id
   description  = "Failover Region"
-//   hcl = true
 }
 
 resource "tfe_team_access" "azure_db_product_a" {

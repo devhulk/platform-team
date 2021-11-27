@@ -22,7 +22,7 @@ resource "tfe_workspace" "product_team" {
     name = "${var.team_name}"
     organization = var.org
     execution_mode = "remote"
-    tag_names = var.tags
+    tag_names = var.workspace_tags
 
     vcs_repo {
         identifier = "devhulk/product-team-a"

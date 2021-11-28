@@ -31,29 +31,6 @@ module "azure_db_team" {
   team_members = ["_devhulk"]
 }
 
-module "team_a_dev" {
-  source = "./modules/workspace" 
-  org = var.org 
-  team_name = module.product_team_a.team_name
-  team_id = module.product_team_a.team_id
-  env = "dev"
-  workspace_tags = ["dev", "team:a"]
-  vcs_token = var.vcs_token
-  workspace_variables = {
-    "ProductTeamVar" : "VarValue"
-  }
-}
-
-module "team_a_qa" {
-  source = "./modules/workspace" 
-  org = var.org 
-  team_name = module.product_team_a.team_name
-  team_id = module.product_team_a.team_id
-  env = "qa"
-  workspace_tags = ["qa", "team:a"]
-  vcs_token = var.vcs_token
-}
-
 module "team_a_prod" {
   source = "./modules/workspace" 
   org = var.org 

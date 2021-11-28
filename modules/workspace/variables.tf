@@ -27,4 +27,10 @@ variable "env" {
   type        = string
 }
 
+variable "workspace_variables" {
+  descrition = "map containing workspace vars"
+  type = map()
+  default = { key="test", key2="test2"}
+}
+
 

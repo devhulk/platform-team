@@ -26,3 +26,12 @@ resource "tfe_team_access" "product_team" {
         workspace_locking = false
     }
 }
+
+resource "tfe_variable" "var" {
+  for_each = var.workspace_variables
+  key          = "${each.key}"
+  value        = "${each.value}"
+  category     = "terraform"
+  workspace_id = tfe_workspace.product_team.id
+  description  = "Azure Region"
+}

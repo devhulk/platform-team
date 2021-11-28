@@ -17,6 +17,20 @@ module "product_team_a" {
   team_members = ["devhulk"]
 }
 
+module "azure_networking_team" {
+  source = "./modules/admin-team" 
+  org = var.org 
+  team_name = "azure-networking"
+  team_members = []
+}
+
+module "azure_db_team" {
+  source = "./modules/admin-team" 
+  org = var.org 
+  team_name = "azure-networking"
+  team_members = []
+}
+
 module "team_a_dev" {
   source = "./modules/workspace" 
   org = var.org 
@@ -53,10 +67,10 @@ module "team_a_prod" {
 module "azure_networking" {
   source = "./modules/workspace" 
   org = var.org 
-  team_name = module.product_team_a.team_name
-  team_id = module.product_team_a.team_id
-  env = "dev"
-  workspace_tags = ["dev", "team:a"]
+  team_name = module.azure_networking_team.team_name
+  team_id = module.azure_networking_team.team_id
+  env = "prod"
+  workspace_tags = ["prod", "team:a"]
   vcs_token = var.vcs_token
   workspace_variables = {
     "region" : "East US",

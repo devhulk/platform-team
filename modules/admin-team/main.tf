@@ -1,5 +1,5 @@
 
-resource "tfe_team" "product_team" {
+resource "tfe_team" "admin_team" {
   name         = "${var.team_name}"
   organization = var.org
   visibility = "organization"
@@ -13,7 +13,7 @@ resource "tfe_team" "product_team" {
 }
 
 
-resource "tfe_team_members" "product_team" {
-    team_id = tfe_team.product_team.id
+resource "tfe_team_members" "admin_team" {
+    team_id = tfe_team.admin_team.id
     usernames = var.team_members
 }

@@ -25,6 +25,9 @@ module "team_a_dev" {
   env = "dev"
   workspace_tags = ["dev", "team:a"]
   vcs_token = var.vcs_token
+  workspace_variables = {
+    "ProductTeamVar" : "VarValue"
+  }
 }
 
 module "team_a_qa" {

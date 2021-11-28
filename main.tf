@@ -27,7 +27,7 @@ module "azure_networking_team" {
 module "azure_db_team" {
   source = "./modules/admin-team" 
   org = var.org 
-  team_name = "azure-networking"
+  team_name = "azure-db"
   team_members = ["_devhulk"]
 }
 

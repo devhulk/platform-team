@@ -64,50 +64,50 @@ module "team_a_prod" {
   vcs_token = var.vcs_token
 }
 
-module "azure_networking_dev" {
-  source = "./modules/workspace" 
-  org = var.org 
-  team_name = module.azure_networking_team.team_name
-  team_id = module.azure_networking_team.team_id
-  env = "dev"
-  workspace_tags = ["dev", "team:a"]
-  vcs_token = var.vcs_token
-  workspace_variables = {
-    "region" : "East US",
-    "team_name" : "team-a",
-    "environment" : "dev"
-  }
-}
+# module "azure_networking_dev" {
+#   source = "./modules/workspace" 
+#   org = var.org 
+#   team_name = module.azure_networking_team.team_name
+#   team_id = module.azure_networking_team.team_id
+#   env = "dev"
+#   workspace_tags = ["dev", "team:a"]
+#   vcs_token = var.vcs_token
+#   workspace_variables = {
+#     "region" : "East US",
+#     "team_name" : "team-a",
+#     "environment" : "dev"
+#   }
+# }
 
-module "azure_networking_qa" {
-  source = "./modules/workspace" 
-  org = var.org 
-  team_name = module.azure_networking_team.team_name
-  team_id = module.azure_networking_team.team_id
-  env = "qa"
-  workspace_tags = ["qa", "team:a"]
-  vcs_token = var.vcs_token
-  workspace_variables = {
-    "region" : "East US",
-    "team_name" : "team-a",
-    "environment" : "qa"
-  }
-}
+# module "azure_networking_qa" {
+#   source = "./modules/workspace" 
+#   org = var.org 
+#   team_name = module.azure_networking_team.team_name
+#   team_id = module.azure_networking_team.team_id
+#   env = "qa"
+#   workspace_tags = ["qa", "team:a"]
+#   vcs_token = var.vcs_token
+#   workspace_variables = {
+#     "region" : "East US",
+#     "team_name" : "team-a",
+#     "environment" : "qa"
+#   }
+# }
 
-module "azure_networking_prod" {
-  source = "./modules/workspace" 
-  org = var.org 
-  team_name = module.azure_networking_team.team_name
-  team_id = module.azure_networking_team.team_id
-  env = "prod"
-  workspace_tags = ["qa", "team:a"]
-  vcs_token = var.vcs_token
-  workspace_variables = {
-    "region" : "East US",
-    "team_name" : "team-a",
-    "environment" : "prod"
-  }
-}
+# module "azure_networking_prod" {
+#   source = "./modules/workspace" 
+#   org = var.org 
+#   team_name = module.azure_networking_team.team_name
+#   team_id = module.azure_networking_team.team_id
+#   env = "prod"
+#   workspace_tags = ["qa", "team:a"]
+#   vcs_token = var.vcs_token
+#   workspace_variables = {
+#     "region" : "East US",
+#     "team_name" : "team-a",
+#     "environment" : "prod"
+#   }
+# }
 
 
 # resource "tfe_workspace" "azure_networking" {

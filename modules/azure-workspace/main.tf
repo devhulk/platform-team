@@ -36,3 +36,4 @@ resource "tfe_variable" "var" {
   workspace_id = tfe_workspace.product_team.id
   description  = ""
 }
+

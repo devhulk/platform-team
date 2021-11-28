@@ -32,7 +32,7 @@ module "azure_db_team" {
 }
 
 module "team_a_prod" {
-  source = "./modules/workspace" 
+  source = "./modules/azure-workspace" 
   org = var.org 
   team_name = module.product_team_a.team_name
   team_id = module.product_team_a.team_id
@@ -42,7 +42,7 @@ module "team_a_prod" {
 }
 
 module "azure_networking_prod" {
-  source = "./modules/workspace" 
+  source = "./modules/azure-workspace" 
   org = var.org 
   team_name = module.azure_networking_team.team_name
   team_id = module.azure_networking_team.team_id
@@ -57,7 +57,7 @@ module "azure_networking_prod" {
 }
 
 module "azure_db_prod" {
-  source = "./modules/workspace" 
+  source = "./modules/azure-workspace" 
   org = var.org 
   team_name = module.azure_db_team.team_name
   team_id = module.azure_db_team.team_id
@@ -69,6 +69,21 @@ module "azure_db_prod" {
     team_name = "team-a",
     db = "sql"
     failover_location = "West US"
+  }
+}
+
+resource "tfe_policy_set" "azure_governance_prod" {
+  name          = "azure-governance-prod"
+  description   = "Azure Governance Policies"
+  organization  = var.org
+  policies_path = "policy"
+  workspace_ids = [module.team_a_prod.workspace_id,  module.azure_db_prod.workspace_id, module.azure_networking_prod.workspace_id]
+
+  vcs_repo {
+    identifier         = "devhulk/azure-governance-demo"
+    branch             = "master"
+    ingress_submodules = false
+    oauth_token_id     = var.vcs_token
   }
 }
 

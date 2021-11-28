@@ -42,11 +42,10 @@ module "team_a_prod" {
   org = var.org 
   team_name = module.product_team_a.team_name
   team_id = module.product_team_a.team_id
-  env = "prod"
+  env = "main"
   workspace_tags = ["azure", "team:a"]
   vcs_token = var.vcs_token
 }
-
 
 // resource "tfe_workspace" "product_b" {
 //     name = "product-team-b"

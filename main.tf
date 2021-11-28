@@ -64,36 +64,6 @@ module "team_a_prod" {
   vcs_token = var.vcs_token
 }
 
-module "azure_networking_dev" {
-  source = "./modules/workspace" 
-  org = var.org 
-  team_name = module.azure_networking_team.team_name
-  team_id = module.azure_networking_team.team_id
-  env = "dev"
-  workspace_tags = ["dev", "team:a"]
-  vcs_token = var.vcs_token
-  workspace_variables = {
-    "region" : "East US",
-    "team_name" : "team-a",
-    "environment" : "dev"
-  }
-}
-
-module "azure_networking_qa" {
-  source = "./modules/workspace" 
-  org = var.org 
-  team_name = module.azure_networking_team.team_name
-  team_id = module.azure_networking_team.team_id
-  env = "qa"
-  workspace_tags = ["qa", "team:a"]
-  vcs_token = var.vcs_token
-  workspace_variables = {
-    "region" : "East US",
-    "team_name" : "team-a",
-    "environment" : "qa"
-  }
-}
-
 module "azure_networking_prod" {
   source = "./modules/workspace" 
   org = var.org 
@@ -106,6 +76,22 @@ module "azure_networking_prod" {
     "region" : "East US",
     "team_name" : "team-a",
     "environment" : "prod"
+  }
+}
+
+module "azure_db_prod" {
+  source = "./modules/workspace" 
+  org = var.org 
+  team_name = module.azure_db_team.team_name
+  team_id = module.azure_db_team.team_id
+  env = "prod"
+  workspace_tags = ["prod", "team:a"]
+  vcs_token = var.vcs_token
+  workspace_variables = {
+    region = "East US",
+    team_name = "team-a",
+    db = "sql"
+    failover_location = "West US"
   }
 }
 
@@ -161,64 +147,64 @@ module "azure_networking_prod" {
 #     }
 # }
 
-resource "tfe_workspace" "azure_db" {
-    name = "azure-db"
-    organization = var.org
-    execution_mode = "remote"
-    tag_names = ["prod", "team:a", "sql"]
+# resource "tfe_workspace" "azure_db" {
+#     name = "azure-db"
+#     organization = var.org
+#     execution_mode = "remote"
+#     tag_names = ["prod", "team:a", "sql"]
 
-    vcs_repo {
-        identifier = "devhulk/azure-db"
-        branch = "main"
-        oauth_token_id = var.vcs_token
-    }
-}
+#     vcs_repo {
+#         identifier = "devhulk/azure-db"
+#         branch = "main"
+#         oauth_token_id = var.vcs_token
+#     }
+# }
 
-resource "tfe_variable" "azure_db_region" {
-  key          = "region"
-  value        = "East US"
-  category     = "terraform"
-  workspace_id = tfe_workspace.azure_db.id
-  description  = "Azure Region"
-}
+# resource "tfe_variable" "azure_db_region" {
+#   key          = "region"
+#   value        = "East US"
+#   category     = "terraform"
+#   workspace_id = tfe_workspace.azure_db.id
+#   description  = "Azure Region"
+# }
 
-resource "tfe_variable" "azure_db_team_name" {
-  key          = "team_name"
-  value        = "team-a"
-  category     = "terraform"
-  workspace_id = tfe_workspace.azure_db.id
-  description  = "Team Name"
-}
+# resource "tfe_variable" "azure_db_team_name" {
+#   key          = "team_name"
+#   value        = "team-a"
+#   category     = "terraform"
+#   workspace_id = tfe_workspace.azure_db.id
+#   description  = "Team Name"
+# }
 
-resource "tfe_variable" "azure_db_type" {
-  key          = "db"
-  value        = "sql"
-  category     = "terraform"
-  workspace_id = tfe_workspace.azure_db.id
-  description  = "SQL of MongoDB"
-}
+# resource "tfe_variable" "azure_db_type" {
+#   key          = "db"
+#   value        = "sql"
+#   category     = "terraform"
+#   workspace_id = tfe_workspace.azure_db.id
+#   description  = "SQL of MongoDB"
+# }
 
-resource "tfe_variable" "azure_db_failover" {
-  key          = "failover_location"
-  value        = "West US"
-  category     = "terraform"
-  workspace_id = tfe_workspace.azure_db.id
-  description  = "Failover Region"
-}
+# resource "tfe_variable" "azure_db_failover" {
+#   key          = "failover_location"
+#   value        = "West US"
+#   category     = "terraform"
+#   workspace_id = tfe_workspace.azure_db.id
+#   description  = "Failover Region"
+# }
 
-resource "tfe_team_access" "azure_db_product_a" {
+# resource "tfe_team_access" "azure_db_product_a" {
 
-    team_id      = module.product_team_a.team_id
-    workspace_id = tfe_workspace.azure_db.id
+#     team_id      = module.product_team_a.team_id
+#     workspace_id = tfe_workspace.azure_db.id
 
-    permissions {
-        runs = "read"
-        variables = "none"
-        state_versions = "read"
-        sentinel_mocks = "read"
-        workspace_locking = false
-    }
-}
+#     permissions {
+#         runs = "read"
+#         variables = "none"
+#         state_versions = "read"
+#         sentinel_mocks = "read"
+#         workspace_locking = false
+#     }
+# }
 
 # resource "tfe_workspace" "product_b" {
 #     name = "product-team-b"

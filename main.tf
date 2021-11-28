@@ -23,7 +23,7 @@ module "team_a_dev" {
   team_name = module.product_team_a.team_name
   team_id = module.product_team_a.team_id
   env = "dev"
-  workspace_tags = ["azure", "team:a"]
+  workspace_tags = ["dev", "team:a"]
   vcs_token = var.vcs_token
 }
 
@@ -33,7 +33,7 @@ module "team_a_qa" {
   team_name = module.product_team_a.team_name
   team_id = module.product_team_a.team_id
   env = "qa"
-  workspace_tags = ["azure", "team:a"]
+  workspace_tags = ["qa", "team:a"]
   vcs_token = var.vcs_token
 }
 
@@ -43,7 +43,7 @@ module "team_a_prod" {
   team_name = module.product_team_a.team_name
   team_id = module.product_team_a.team_id
   env = "prod"
-  workspace_tags = ["azure", "team:a"]
+  workspace_tags = ["prod", "team:a"]
   vcs_token = var.vcs_token
 }
 

@@ -56,6 +56,11 @@ module "azure_networking_prod" {
   }
 }
 
+resource "tfe_run_trigger" "team_a_networking" {
+  workspace_id  = module.team_a_prod.workspace_id
+  sourceable_id  = module.azure_networking_prod.workspace_id
+}
+
 module "azure_db_prod" {
   source = "./modules/azure-workspace" 
   org = var.org 

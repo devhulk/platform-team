@@ -19,6 +19,7 @@ module "product_team_a" {
 
 module "team_a_dev" {
   source = "./modules/workspace" 
+  org = var.org 
   team_name = module.product_team_a.team_name
   team_id = module.product_team_a.team_id
   env = "dev"
@@ -28,6 +29,7 @@ module "team_a_dev" {
 
 module "team_a_qa" {
   source = "./modules/workspace" 
+  org = var.org 
   team_name = module.product_team_a.team_name
   team_id = module.product_team_a.team_id
   env = "qa"
@@ -37,6 +39,7 @@ module "team_a_qa" {
 
 module "team_a_prod" {
   source = "./modules/workspace" 
+  org = var.org 
   team_name = module.product_team_a.team_name
   team_id = module.product_team_a.team_id
   env = "prod"

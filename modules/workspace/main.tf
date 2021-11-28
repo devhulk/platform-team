@@ -8,7 +8,7 @@ resource "tfe_workspace" "product_team" {
 
     vcs_repo {
         identifier = "devhulk/${var.team_name}"
-        branch = "${var.env}"
+        branch = var.env == "prod" ? "main" : var.env
         oauth_token_id = var.vcs_token
     }
 }

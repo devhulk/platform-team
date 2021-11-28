@@ -16,7 +16,9 @@ resource "tfe_workspace" "product_team" {
 
 resource "tfe_team_access" "product_team" {
 
-    team_id      = var.team_id
+    for_each = var.team_access
+
+    team_id      = each.value
     workspace_id = tfe_workspace.product_team.id
 
     permissions {

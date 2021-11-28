@@ -8,6 +8,12 @@ variable "team_name" {
   type        = string
 }
 
+variable "team_access" {
+  description = "teams to be given access"
+  type        = map(string)
+  default = {}
+}
+
 variable "workspace_tags" {
   description = "workspace tags"
   type        = list

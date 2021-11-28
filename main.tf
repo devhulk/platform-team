@@ -39,6 +39,9 @@ module "team_a_prod" {
   env = "prod"
   workspace_tags = ["prod", "team:a"]
   vcs_token = var.vcs_token
+  team_access = {
+    team_id = module.product_team_a.team_id
+  }
 }
 
 module "azure_networking_prod" {
@@ -49,6 +52,10 @@ module "azure_networking_prod" {
   env = "prod"
   workspace_tags = ["prod", "team:a"]
   vcs_token = var.vcs_token
+  team_access = {
+    team_id = module.product_team_a.team_id,
+    source_team = module.azure_networking_team.team_id
+  }
   workspace_variables = {
     "region" : "East US",
     "team_name" : "team-a",
@@ -69,6 +76,10 @@ module "azure_db_prod" {
   env = "prod"
   workspace_tags = ["prod", "team:a"]
   vcs_token = var.vcs_token
+  team_access = {
+    team_id = module.product_team_a.team_id,
+    source_team = module.azure_db_team.team_id
+  }
   workspace_variables = {
     region = "East US",
     team_name = "team-a",

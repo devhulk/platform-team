@@ -47,6 +47,7 @@ module "team_a_prod" {
   vcs_token = var.vcs_token
 }
 
+
 resource "tfe_workspace" "azure_networking" {
     name = "azure-networking"
     organization = var.org
@@ -87,7 +88,7 @@ resource "tfe_variable" "azure_networking_environment" {
 
 resource "tfe_team_access" "azure_networking_product_a" {
 
-    team_id      = tfe_team.product_a.id
+    team_id      = module.product_team_a.team_id
     workspace_id = tfe_workspace.azure_networking.id
 
     permissions {
@@ -146,7 +147,7 @@ resource "tfe_variable" "azure_db_failover" {
 
 resource "tfe_team_access" "azure_db_product_a" {
 
-    team_id      = tfe_team.product_a.id
+    team_id      = module.product_team_a.id
     workspace_id = tfe_workspace.azure_db.id
 
     permissions {

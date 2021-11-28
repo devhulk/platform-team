@@ -33,5 +33,5 @@ resource "tfe_variable" "var" {
   value        = "${each.value}"
   category     = "terraform"
   workspace_id = tfe_workspace.product_team.id
-  description  = "Azure Region"
+  description  = ""
 }

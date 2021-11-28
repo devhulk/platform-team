@@ -50,58 +50,72 @@ module "team_a_prod" {
   vcs_token = var.vcs_token
 }
 
-
-resource "tfe_workspace" "azure_networking" {
-    name = "azure-networking"
-    organization = var.org
-    execution_mode = "remote"
-    tag_names = ["prod", "team:a"]
-
-    vcs_repo {
-        identifier = "devhulk/azure-networking"
-        branch = "main"
-        oauth_token_id = var.vcs_token
-    }
+module "azure_networking" {
+  source = "./modules/workspace" 
+  org = var.org 
+  team_name = module.product_team_a.team_name
+  team_id = module.product_team_a.team_id
+  env = "dev"
+  workspace_tags = ["dev", "team:a"]
+  vcs_token = var.vcs_token
+  workspace_variables = {
+    "region" : "East US",
+    "team_name" : "team-a",
+    "environment" : "dev"
+  }
 }
 
-resource "tfe_variable" "azure_networking_region" {
-  key          = "region"
-  value        = "East US"
-  category     = "terraform"
-  workspace_id = tfe_workspace.azure_networking.id
-  description  = "Azure Region"
-//   hcl = true
-}
 
-resource "tfe_variable" "azure_networking_team_name" {
-  key          = "team_name"
-  value        = "team-a"
-  category     = "terraform"
-  workspace_id = tfe_workspace.azure_networking.id
-  description  = "Team Name"
-}
+# resource "tfe_workspace" "azure_networking" {
+#     name = "azure-networking"
+#     organization = var.org
+#     execution_mode = "remote"
+#     tag_names = ["prod", "team:a"]
 
-resource "tfe_variable" "azure_networking_environment" {
-  key          = "environment"
-  value        = "production"
-  category     = "terraform"
-  workspace_id = tfe_workspace.azure_networking.id
-  description  = "Deployment Environment"
-}
+#     vcs_repo {
+#         identifier = "devhulk/azure-networking"
+#         branch = "main"
+#         oauth_token_id = var.vcs_token
+#     }
+# }
 
-resource "tfe_team_access" "azure_networking_product_a" {
+# resource "tfe_variable" "azure_networking_region" {
+#   key          = "region"
+#   value        = "East US"
+#   category     = "terraform"
+#   workspace_id = tfe_workspace.azure_networking.id
+#   description  = "Azure Region"
+# }
 
-    team_id      = module.product_team_a.team_id
-    workspace_id = tfe_workspace.azure_networking.id
+# resource "tfe_variable" "azure_networking_team_name" {
+#   key          = "team_name"
+#   value        = "team-a"
+#   category     = "terraform"
+#   workspace_id = tfe_workspace.azure_networking.id
+#   description  = "Team Name"
+# }
 
-    permissions {
-        runs = "read"
-        variables = "none"
-        state_versions = "read"
-        sentinel_mocks = "read"
-        workspace_locking = false
-    }
-}
+# resource "tfe_variable" "azure_networking_environment" {
+#   key          = "environment"
+#   value        = "production"
+#   category     = "terraform"
+#   workspace_id = tfe_workspace.azure_networking.id
+#   description  = "Deployment Environment"
+# }
+
+# resource "tfe_team_access" "azure_networking_product_a" {
+
+#     team_id      = module.product_team_a.team_id
+#     workspace_id = tfe_workspace.azure_networking.id
+
+#     permissions {
+#         runs = "read"
+#         variables = "none"
+#         state_versions = "read"
+#         sentinel_mocks = "read"
+#         workspace_locking = false
+#     }
+# }
 
 resource "tfe_workspace" "azure_db" {
     name = "azure-db"

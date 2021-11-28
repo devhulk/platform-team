@@ -21,14 +21,14 @@ module "azure_networking_team" {
   source = "./modules/admin-team" 
   org = var.org 
   team_name = "azure-networking"
-  team_members = []
+  team_members = ["_devhulk"]
 }
 
 module "azure_db_team" {
   source = "./modules/admin-team" 
   org = var.org 
   team_name = "azure-networking"
-  team_members = []
+  team_members = ["_devhulk"]
 }
 
 module "team_a_dev" {

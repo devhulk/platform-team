@@ -1,0 +1,31 @@
+{
+  "name": "cleanup_demo",
+  "version": "0.0.1",
+  "description": "",
+  "main": "cleanup_demo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "start": "npm run build && node dist/cleanup_demo.js",
+    "restart": "pm2 restart cleanup_demo",
+    "dev": "pm2 start dist/cleanup_demo.js --cron-restart='* * * * *'",
+    "prod": "npm run build && pm2 start ecosystem.config.js --cron-restart='* * * * *'"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "mongodb": "^4.1.3",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "bip39": "^3.0.4",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "proxy": "http://localhost:3572"
+}

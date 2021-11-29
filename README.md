@@ -36,4 +36,5 @@ Other Modules Not Currently In Use:
 For some reason the tfe module doesn't auto destroy resources, or I just don't see it. In the interim I have a cleanup script that can be run post demo and destroy to make sure resources are deleted. Its under ```demo/cleanup_demo.js```. I also don't mark anything as "DoNotDelete" so resources may get taken care of by the external Azure measures we have in place, wouldn't count on it though.  
 # Next Steps
 
+* Implement tagging standard and cleanup scripts based on resource owners
 * Combining modules into composable Application Architectures (n-tier, serverless, microservices, pub-sub, etc)

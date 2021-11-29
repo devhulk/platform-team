@@ -51,16 +51,15 @@ let main = () => {
     .then(() => {
         let res = searchResult
         res.forEach((teamName) => {
-           deleteResources(teamName) 
-           .then((res) => {
-               console.log(res)
-           })
-           .catch(err => console.error(err))
+            console.log(teamName)
+        //    deleteResources(teamName) 
+        //    .then((res) => {
+        //        console.log(res)
+        //    })
+        //    .catch(err => console.error(err))
         })
-        .catch(err => console.error(err))
     })
     .catch(err => console.error(err))
-    getResourceGroups()
 }
 
 main()

@@ -33,7 +33,7 @@ provider "tfe" {
 
  module "team_a_prod" {
    source = "./modules/azure-workspace" 
-   depends_on = [module.product_team_a, module.azure_networking_prod]
+   depends_on = [module.product_team_a]
    org = var.org 
    team_name = module.product_team_a.team_name
    team_id = module.product_team_a.team_id

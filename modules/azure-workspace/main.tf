@@ -2,10 +2,9 @@
 resource "tfe_workspace" "product_team" {
     name = "${var.team_name}-${var.env}"
     organization = var.org
-    depends_on = [tfe_variable.var]
     execution_mode = "remote"
     tag_names = var.workspace_tags
-    // queue_all_runs = false
+    queue_all_runs = false
     allow_destroy_plan = true
     remote_state_consumer_ids = var.state_consumers
 

@@ -4,7 +4,7 @@ resource "tfe_workspace" "product_team" {
     organization = var.org
     execution_mode = "remote"
     tag_names = var.workspace_tags
-    queue_all_runs = false
+    // queue_all_runs = false
     allow_destroy_plan = true
     remote_state_consumer_ids = var.state_consumers
 

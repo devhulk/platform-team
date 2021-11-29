@@ -6,6 +6,7 @@ resource "tfe_workspace" "product_team" {
     tag_names = var.workspace_tags
     queue_all_runs = false
     allow_destroy_plan = true
+    remote_state_consumer_ids = var.state_consumers
 
     vcs_repo {
         identifier = "devhulk/${var.team_name}"

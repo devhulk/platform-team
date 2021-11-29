@@ -3,6 +3,11 @@ variable "org" {
   type        = string
 }
 
+variable "team_id" {
+  description = "id of the team to be granted workspace access"
+  type        = string
+}
+
 variable "team_name" {
   description = "Name of team being created"
   type        = string
@@ -12,6 +17,12 @@ variable "team_access" {
   description = "teams to be given access"
   type        = map(string)
   default = {}
+}
+
+variable "state_consumers" {
+  description = "Workspaces that have access to this workspaces state"
+  type = list(string)
+  default = []
 }
 
 variable "workspace_tags" {
@@ -24,10 +35,6 @@ variable "vcs_token" {
   type        = string
 }
 
-variable "team_id" {
-  description = "id of the team to be granted workspace access"
-  type        = string
-}
 variable "env" {
   description = "env mapped to workspace name based on mapped git branch (main | dev | prod)"
   type        = string

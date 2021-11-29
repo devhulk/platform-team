@@ -50,6 +50,7 @@ module "azure_networking_prod" {
   team_name = module.azure_networking_team.team_name
   team_id = module.azure_networking_team.team_id
   env = "prod"
+  state_consumers = [module.team_a_prod.workspace_id]
   workspace_tags = ["prod", "team:a"]
   vcs_token = var.vcs_token
   team_access = {

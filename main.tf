@@ -10,7 +10,6 @@ provider "tfe" {
   version  = "~> 0.26.0"
 }
 
-
  module "product_team_a" {
    source = "./modules/product-team" 
    org = var.org 
